@@ -11,7 +11,7 @@ def on_timeout(ctx: ap.Context):
         if os.path.exists(os.path.join(project_path, "GAD-git-tools")):
             # Run the auto update script with --need-update flag using full path
             script_path = os.path.join(project_path, "GAD-git-tools/scripts/auto_update.py")
-            result = os.popen(f"python3 {script_path} --need-update").read().strip()
+            result = os.popen(f"python {script_path} --need-update").read().strip()
             
             # If updates are needed (result is "true"), show notification
             if result == "true":
@@ -33,7 +33,7 @@ if __name__ == "__main__":
         if os.path.exists(os.path.join(project_path, "GAD-git-tools")):
             # Run the auto update script using full path
             script_path = os.path.join(project_path, "GAD-git-tools/scripts/auto_update.py")
-            result = os.system(f"python3 {script_path}")
+            result = os.system(f"python {script_path}")
             
             if result == 0:
                 ui = ap.UI()
