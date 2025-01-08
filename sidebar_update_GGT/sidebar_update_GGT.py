@@ -13,10 +13,15 @@ def on_timeout(ctx: ap.Context):
         if os.path.exists(os.path.join(project_path, "GAD-git-tools")):
             # Run the auto update script with --need-update flag using full path
             script_path = os.path.join(project_path, "GAD-git-tools/scripts/auto-update.py")
+            
+            startupinfo = subprocess.STARTUPINFO()
+            startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+            
             result = subprocess.run(
                 [sys.executable, script_path, "--need-update"],
                 capture_output=True,
                 text=True,
+                startupinfo=startupinfo,
                 creationflags=subprocess.CREATE_NO_WINDOW
             )
             
@@ -24,7 +29,7 @@ def on_timeout(ctx: ap.Context):
             if result.stdout.strip() == "true":
                 ui = ap.UI()
                 ui.show_info("GAD-git-tools updates available")
-                ctx.icon_color = "red"
+                
     except Exception as e:
         print(f"Error in on_timeout: {str(e)}")
         ui = ap.UI()
