@@ -48,7 +48,7 @@ if __name__ == "__main__":
             script_path = os.path.join(project_path, "GAD-git-tools/scripts/auto-update.py")
             
             result = subprocess.run(
-                [sys.executable, script_path],
+                [sys.executable, script_path, "--no-window"],
                 capture_output=True,
                 text=True
             )

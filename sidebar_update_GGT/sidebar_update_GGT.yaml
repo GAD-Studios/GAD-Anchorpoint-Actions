@@ -5,7 +5,7 @@
 
 version: 1.0
 action:
-  name: Update GAD-git-tools
+  name: Update Tools
 
   version: 1
   id: gad::actions::update_GGT
@@ -13,7 +13,7 @@ action:
   type: python
   enable: true
   author: GAD Studios
-  description: Checks for updates to GAD-git-tools
+  description: Updates GAD-git-tools
 
   script: sidebar_update_GGT.py
 
