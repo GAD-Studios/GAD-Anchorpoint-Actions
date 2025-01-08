@@ -11,18 +11,19 @@ def on_timeout(ctx: ap.Context):
 
         # Check if GAD-git-tools is the project path directory
         if os.path.exists(os.path.join(project_path, "GAD-git-tools")):
-            # Run the auto update script with --need-update flag using full path
+            
             script_path = os.path.join(project_path, "GAD-git-tools/scripts/auto-update.py")
             
             startupinfo = subprocess.STARTUPINFO()
             startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
             
             result = subprocess.run(
-                [sys.executable, script_path, "--need-update"],
+                [sys.executable, script_path, "--need-update", "--no-window"],
                 capture_output=True,
                 text=True,
                 startupinfo=startupinfo,
-                creationflags=subprocess.CREATE_NO_WINDOW
+                creationflags=subprocess.CREATE_NO_WINDOW,
+                cwd=project_path
             )
             
             # If updates are needed (output is "true"), show notification
