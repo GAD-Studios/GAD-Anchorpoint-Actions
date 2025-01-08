@@ -1,6 +1,7 @@
 import os
 import anchorpoint as ap
 import subprocess
+import sys
 
 
 def on_timeout(ctx: ap.Context):
@@ -13,13 +14,14 @@ def on_timeout(ctx: ap.Context):
             # Run the auto update script with --need-update flag using full path
             script_path = os.path.join(project_path, "GAD-git-tools/scripts/auto_update.py")
             result = subprocess.run(
-                ["python", script_path, "--need-update"],
+                [sys.executable, script_path, "--need-update"],
                 capture_output=True,
-                text=True
+                text=True,
+                creationflags=subprocess.CREATE_NO_WINDOW
             )
             
             # If updates are needed (output is "true"), show notification
-            if result.stdout.strip().lower() == "true":
+            if result.stdout.strip() == "true":
                 ui = ap.UI()
                 ui.show_info("GAD-git-tools updates available")
                 ctx.icon_color = "red"
@@ -38,8 +40,9 @@ if __name__ == "__main__":
         if os.path.exists(os.path.join(project_path, "GAD-git-tools")):
             # Run the auto update script using full path and capture output
             script_path = os.path.join(project_path, "GAD-git-tools/scripts/auto_update.py")
+            
             result = subprocess.run(
-                ["python", script_path],
+                [sys.executable, script_path],
                 capture_output=True,
                 text=True
             )
