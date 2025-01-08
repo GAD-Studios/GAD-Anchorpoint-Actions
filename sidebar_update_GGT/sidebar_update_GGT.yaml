@@ -8,10 +8,10 @@ action:
   name: Sidebar Example
 
   version: 1
-  id: ap::examples::sidebar
+  id: gad::actions::update_GGT
   category: auto-update
   type: python
-  enable: false
+  enable: true
   author: GAD Studios
   description: Checks for updates to GAD-git-tools
 

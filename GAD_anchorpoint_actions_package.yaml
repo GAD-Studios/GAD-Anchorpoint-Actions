@@ -8,10 +8,10 @@ action:
   name: Update GAD-git-tools
 
   version: 1
-  id: ap::package::examples
+  id: gad::package::update_GGT
   category: utility/code/examples
   type: package
-  enable: false
+  enable: true
   author: Anchorpoint Software GmbH
   description: A useful collection of <a href='https://github.com/Anchorpoint-Software/ap-actions'>Action examples</a> that showcase how to write your own Actions
   icon:
