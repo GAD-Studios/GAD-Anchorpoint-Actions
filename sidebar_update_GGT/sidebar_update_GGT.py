@@ -12,7 +12,7 @@ def on_timeout(ctx: ap.Context):
         # Check if GAD-git-tools is the project path directory
         if os.path.exists(os.path.join(project_path, "GAD-git-tools")):
             # Run the auto update script with --need-update flag using full path
-            script_path = os.path.join(project_path, "GAD-git-tools/scripts/auto_update.py")
+            script_path = os.path.join(project_path, "GAD-git-tools/scripts/auto-update.py")
             result = subprocess.run(
                 [sys.executable, script_path, "--need-update"],
                 capture_output=True,
@@ -39,7 +39,7 @@ if __name__ == "__main__":
         # Check if GAD-git-tools is the project path directory
         if os.path.exists(os.path.join(project_path, "GAD-git-tools")):
             # Run the auto update script using full path and capture output
-            script_path = os.path.join(project_path, "GAD-git-tools/scripts/auto_update.py")
+            script_path = os.path.join(project_path, "GAD-git-tools/scripts/auto-update.py")
             
             result = subprocess.run(
                 [sys.executable, script_path],
