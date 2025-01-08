@@ -1,5 +1,6 @@
 import os
 import anchorpoint as ap
+import subprocess
 
 
 def on_timeout(ctx: ap.Context):
@@ -11,10 +12,14 @@ def on_timeout(ctx: ap.Context):
         if os.path.exists(os.path.join(project_path, "GAD-git-tools")):
             # Run the auto update script with --need-update flag using full path
             script_path = os.path.join(project_path, "GAD-git-tools/scripts/auto_update.py")
-            result = os.popen(f"python {script_path} --need-update").read().strip()
+            result = subprocess.run(
+                ["python", script_path, "--need-update"],
+                capture_output=True,
+                text=True
+            )
             
-            # If updates are needed (result is "true"), show notification
-            if result == "true":
+            # If updates are needed (output is "true"), show notification
+            if result.stdout.strip().lower() == "true":
                 ui = ap.UI()
                 ui.show_info("GAD-git-tools updates available")
                 ctx.icon_color = "red"
@@ -31,15 +36,19 @@ if __name__ == "__main__":
 
         # Check if GAD-git-tools is the project path directory
         if os.path.exists(os.path.join(project_path, "GAD-git-tools")):
-            # Run the auto update script using full path
+            # Run the auto update script using full path and capture output
             script_path = os.path.join(project_path, "GAD-git-tools/scripts/auto_update.py")
-            result = os.system(f"python {script_path}")
+            result = subprocess.run(
+                ["python", script_path],
+                capture_output=True,
+                text=True
+            )
             
-            if result == 0:
+            if result.returncode != 0:
+                raise Exception(f"Update failed:\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}")
+            else:
                 ui = ap.UI()
                 ui.show_info("GAD-git-tools updated successfully")
-            else:
-                raise Exception(f"Update script returned error code: {result}")
         else:
             raise Exception("GAD-git-tools directory not found")
             
