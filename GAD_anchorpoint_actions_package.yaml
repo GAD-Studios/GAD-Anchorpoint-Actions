@@ -5,7 +5,7 @@
 
 version: 1.0
 action:
-  name: Coding Examples
+  name: Update GAD-git-tools
 
   version: 1
   id: ap::package::examples
@@ -15,7 +15,7 @@ action:
   author: Anchorpoint Software GmbH
   description: A useful collection of <a href='https://github.com/Anchorpoint-Software/ap-actions'>Action examples</a> that showcase how to write your own Actions
   icon:
-    path: :/icons/multimedia/cloud server.svg
+    path: :/icons/multimedia/download.svg
 
   actions:
     - ap::examples::sidebar
