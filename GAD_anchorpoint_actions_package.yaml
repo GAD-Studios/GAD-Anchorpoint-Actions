@@ -12,10 +12,10 @@ action:
   category: utility/code/examples
   type: package
   enable: true
-  author: Anchorpoint Software GmbH
-  description: A useful collection of <a href='https://github.com/Anchorpoint-Software/ap-actions'>Action examples</a> that showcase how to write your own Actions
+  author: GAD Studio
+  description: Checks for updates to GAD-git-tools
   icon:
     path: :/icons/multimedia/download.svg
 
   actions:
-    - ap::examples::sidebar
+    - gad::actions::update_GGT
