@@ -5,11 +5,11 @@
 
 version: 1.0
 action:
-  name: Sidebar Example
+  name: Update GAD-git-tools
 
   version: 1
   id: gad::actions::update_GGT
-  category: auto-update
+  category: gad/update
   type: python
   enable: true
   author: GAD Studios
@@ -21,5 +21,5 @@ action:
     sidebar:
       enable: true
 
-icon:
-  path: :/icons/multimedia/download.svg
+  icon:
+    path: :/icons/multimedia/download.svg
