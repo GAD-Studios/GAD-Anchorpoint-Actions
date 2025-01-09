@@ -2,15 +2,14 @@ import os
 import anchorpoint as ap
 import subprocess
 import sys
+from datetime import datetime
 
 
 def on_timeout(ctx: ap.Context):
-    # Check if update is needed first
-    if check_gad_git_tools(ctx):
-        # Only attempt update if needed
-        if update_gad_git_tools(ctx, show_success_toast=True):
-            # Success toast is handled inside update_gad_git_tools
-            pass
+    # Only run once per hour by checking current hour
+    if datetime.now().minute == 0:
+        if check_gad_git_tools(ctx):
+            update_gad_git_tools(ctx, show_success_toast=True)
 
 def check_gad_git_tools(ctx: ap.Context):
     try:
